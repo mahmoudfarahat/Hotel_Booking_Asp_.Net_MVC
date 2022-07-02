@@ -9,7 +9,10 @@ namespace HotelBooking
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-1.13.1.js",
+                         "~/Scripts/datatables/jquery.dataTables.js",
+                         "~/Scripts/datatables/dataTables.bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -23,8 +26,10 @@ namespace HotelBooking
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                "~/Content/themes/base/jquery-ui.css",
+                      "~/Content/Flatly.css",
+                        "~/Content/datatables/css/dataTables.bootstrap.css",
+                      "~/Content/Site.css"));
         }
     }
 }

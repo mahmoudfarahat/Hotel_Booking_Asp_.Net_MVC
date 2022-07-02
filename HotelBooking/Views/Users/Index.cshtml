@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<HotelBooking.viewModels.RolesViewModel>
+
+@{
+    ViewBag.Title = "Index";
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table ">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleNames)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var user in Model.ToList())
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => user.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.RoleNames)
+            </td>
+
+
+
+
+            @* @if (user.RoleNames == "AdminRole")
+                //{
+                //@Html.ActionLink("Edit", "Edit", null, new { @class = "hidden" })
+                     //   @Html.ActionLink("Details", "Details" )
+                 //  @Html.ActionLink("Delete", "Delete" , null, new { @class = "hidden" })
+                  //   }*@
+
+            <td>
+                @if (User.Identity.GetUserId() != user.UserID)
+                {
+                <div>
+                    @Html.ActionLink("Edit", "Edit") |
+                    @Html.ActionLink("Details", "Details") |
+                    @Html.ActionLink("Delete", "Delete")
+                </div>
+                    }
+
+
+            </td>
+
+
+        </tr>
+    }
+
+</table>

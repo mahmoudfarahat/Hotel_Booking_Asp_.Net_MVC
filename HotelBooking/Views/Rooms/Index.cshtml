@@ -1,0 +1,79 @@
+﻿@model IEnumerable<HotelBooking.Models.Room>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@if (this.User.IsInRole("AdminRole"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+}
+
+
+
+@foreach (var item in Model)
+{
+
+    <div class="card mb-3" style="max-width: 100%">
+        <div class="row no-gutters">
+
+            <div class="col-md-2">
+                <img src="~/images/@Html.DisplayFor(modelItem => item.RoomImage)" width="150" height="150" class="card-img" alt="...">
+            </div>
+
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h4 class="card-title">Room @Html.DisplayFor(modelItem => item.Id) </h4>
+                    <p class="card-text">Price:  @Html.DisplayFor(modelItem => item.Price) $ </p>
+                    <p class="card-text">Room Size: @Html.DisplayFor(modelItem => item.Size) m </p>
+                    <p class="card-text">Number of Beds Size: @Html.DisplayFor(modelItem => item.BedNumber)  </p>
+
+                    <p class="card-text">
+                        Availability:
+                        @if (item.IsReserved == 0)
+                        {
+                            <span>  Available</span>
+                        }
+                        else
+                        {
+                            <span>  Reserved</span>
+                        }
+                    </p>
+
+
+
+
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <p>
+                    @if (this.User.IsInRole("AdminRole"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id } , new { @class = "btn btn-default " })
+                    
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger " })
+                       
+
+                    }
+
+                    @Html.ActionLink("Details", "Details", new { id = item.Id } , new { @class = "btn btn-success " })
+                   
+
+                    @Html.ActionLink("Book", "Create", "Reservations", new { id = item.Id },   new { @class = "btn btn-info" })
+                     
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
